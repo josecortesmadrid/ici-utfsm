@@ -2,7 +2,17 @@
 
 **Cómo se cruza.** Validación de título, colegiaturas, rutas migratorias — para el movimiento que esta cohorte hace más que ninguna: Chile → Canadá, Estados Unidos, Australia.
 
-Este es el único activo del repo que **sirve desde el día uno**, porque no depende de que nadie haya aportado todavía. El esqueleto son hechos oficiales con su fuente. Lo que falta — cuánto costó de verdad, cuánto demoró de verdad — lo ponen los que ya pasaron.
+## Cuánto de esto existe hoy: **4 hechos, 6 huecos**
+
+| Marca | Hoy |
+|---|---|
+| `[OFICIAL]` — proceso con fuente institucional | **4** |
+| `[VIVIDO]` — alguien que lo hizo, con fecha | **0** |
+| `[FALTA]` — nadie lo ha aportado | **6** |
+
+Dilo derecho: **esto es hoy un esqueleto**, no una guía. Te dice a qué organismo ir y cuál es la forma del proceso — que ya es más de lo que tenías —, pero no te dice cuánto costó ni dónde se atasca, porque nadie lo ha contado todavía.
+
+Es el único activo que funciona sin aportes previos, y aun así está a menos de la mitad. Se dice acá para que no llegues esperando otra cosa.
 
 ## Cómo leer esto
 

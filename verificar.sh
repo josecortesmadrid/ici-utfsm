@@ -53,12 +53,55 @@ echo ""
 echo "  [4] La regla de privacidad se ejecuta"
 if [ -f scripts/validar_k_anonimato.py ]; then
     if python scripts/validar_k_anonimato.py atlas/datos.csv >/dev/null 2>&1; then
-        ok "validar_k_anonimato.py corre y pasa"
+        ok "validar_k_anonimato.py corre y pasa sobre atlas/datos.csv"
     else
         falla "validar_k_anonimato.py falla — hay celdas bajo umbral"
     fi
+
+    # El validador se prueba a si mismo contra casos conocidos.
+    #
+    # Sin esto, la linea de arriba era verde VACUA: atlas/datos.csv no existe
+    # todavia, el validador retorna 0 por "Atlas vacio", y el chequeo de mayor
+    # riesgo del repo pasaba sin ejercitar una sola regla. Un validador probado
+    # solo contra datos que no existen es una promesa, no una garantia.
+    if [ -f scripts/test_validador.py ]; then
+        if python scripts/test_validador.py >/dev/null 2>&1; then
+            ok "el validador pasa sus 9 casos adversariales (incluye k=1 encubierto)"
+        else
+            falla "el validador NO caza casos que deberia — correr: python scripts/test_validador.py"
+        fi
+    else
+        falla "scripts/test_validador.py no existe — el validador no esta probado"
+    fi
 else
     falla "scripts/validar_k_anonimato.py no existe — PRIVACIDAD.md lo promete"
+fi
+
+# --- 4b. El Atlas no reinventa el numero de masa critica ---
+echo ""
+echo "  [4b] La masa critica esta medida, no estimada"
+if [ -f scripts/probe_masa_critica.py ]; then
+    SAL=$(python scripts/probe_masa_critica.py 2>/dev/null)
+    REAL=$(echo "$SAL" | awk '/^  realista/ {print $2; exit}' | tr -d 'mediana=')
+    if grep -q "246 filas" atlas/README.md; then
+        ok "el README publica la cifra medida del escenario realista"
+    else
+        falla "atlas/README.md no refleja la salida del probe (realista=$REAL)"
+    fi
+    # La cifra refutada PUEDE aparecer, pero solo dentro de su correccion.
+    # Citar un numero para decir que era falso no es reafirmarlo — el chequeo
+    # ingenuo no distinguia las dos cosas y daba falso positivo.
+    if grep -q "40 a 60" atlas/README.md; then
+        if grep "40 a 60" atlas/README.md | grep -qE "falso|decía antes|refutad"; then
+            ok "la cifra refutada solo aparece dentro de su correccion"
+        else
+            falla "la cifra refutada '40 a 60' vuelve a afirmarse"
+        fi
+    else
+        ok "la cifra refutada no aparece"
+    fi
+else
+    falla "scripts/probe_masa_critica.py no existe — el Atlas afirma cifras sin medirlas"
 fi
 
 # --- 5. El Atlas no promete datos que no tiene ---

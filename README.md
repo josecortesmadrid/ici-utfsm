@@ -52,13 +52,18 @@ En una cohorte chica, "gerente de operaciones, promoción 2008, en una minera ca
 
 Esto recién parte y decirlo es parte del trato:
 
-| Pieza | Estado | Depende de |
+| Pieza | Estado | Medido |
 |---|---|---|
-| El Tránsito | **utilizable** | nada — son hechos verificables, sirve desde el día uno |
-| El Atlas | **vacío** | necesita ≥5 aportes por celda antes de mostrar nada |
-| El Índice | **vacío** | necesita gente que se ofrezca |
+| El Tránsito | **esqueleto** — 4 hechos oficiales, 6 huecos, 0 testimonios | conteo de marcas |
+| El Atlas | **vacío** — 0 filas, 0 celdas publicables | `validar_k_anonimato.py` |
+| El Índice | **vacío** — 0 personas ofrecidas | conteo de issues |
 
-No vas a encontrar un Atlas lleno prometido en un README. Cuando tenga datos, va a decir cuántos y de qué fecha.
+Dos correcciones hechas el mismo día de publicar, porque los números iniciales estaban mal:
+
+- El Atlas decía necesitar *"40 a 60 filas"*. **Medido: 246** en el escenario realista. El número se había escrito sin calcularlo. Por eso el Atlas pasó a publicar en 3 dimensiones en vez de 5, lo que lo baja a **77**. Corre `python scripts/probe_masa_critica.py` y lo reproduces.
+- El Tránsito decía ser *"utilizable"*. Contado: **4 hechos contra 6 huecos**. Es un esqueleto, y ahora lo dice.
+
+Ese es el estándar acá: **cuando un número de este repo resulta falso, se corrige a la vista, no se borra.**
 
 ## Cómo se gobierna
 

@@ -22,20 +22,38 @@ Es un activo que **solo se puede construir entre nosotros**, y esa es toda su ve
 
 Cada celda se publica cuando junta **5 personas o más**. Ni una menos.
 
-Con las dimensiones que se piden — promoción × país × industria × nivel × experiencia — hacen falta del orden de **40 a 60 filas** antes de que las primeras celdas crucen el umbral, y van a ser las combinaciones más comunes: minería en Chile, consultoría en Chile, minería en Canadá.
+**Cuántas filas hacen falta — medido, no estimado:**
 
-Las celdas raras quizás nunca se abran. Eso es correcto y es el precio de que nadie quede identificado.
+```bash
+python scripts/probe_masa_critica.py
+```
+
+| Escenario | 5 dimensiones | 3 dimensiones |
+|---|---|---|
+| Optimista (red-clan: 80% Chile, 60% minería) | 32 filas | 18 |
+| **Realista** | **246 filas** | **77** |
+| Disperso (la red logra variedad) | 2.271 filas | 450 |
+
+Este README decía antes *"del orden de 40 a 60 filas"*. **Ese número era falso**: solo se cumple en el escenario optimista, que es una red-clan poco realista, y se publicó sin calcularlo. El probe de arriba lo corrigió el mismo día.
+
+**Por eso el Atlas publica en 3 dimensiones**, no en 5: `país × industria × nivel`. Soltar promoción y experiencia baja el requisito de 246 a 77 filas — la diferencia entre alcanzable e imposible. Promoción y experiencia se piden igual, pero se publican por separado y **nunca cruzadas** con las otras tres.
+
+Es también la decisión más segura: cruzar cinco atributos en una cohorte chica es lo que convierte un agregado en un nombre propio.
+
+Las celdas raras quizás nunca se abran. Es correcto, y es el precio de que nadie quede identificado.
 
 ## Formato del dato
 
-Cuando existan, los datos viven en `datos.csv`, plano y auditable:
+`datos.csv` es un **agregado, no un padrón**. Una fila = una celda con su conteo, nunca una fila por persona:
 
 ```csv
-promocion,pais,industria,nivel,experiencia,banda_renta_usd,fecha_aporte
-2005-2009,Canadá,Minería,Superintendencia,13-20,120000-180000,2026-08
+pais,industria,nivel,n,banda_renta_usd,fecha_corte
+Canadá,Minería,Superintendencia,7,120000-180000,2026-08
 ```
 
-Sin nombres, sin empleadores, sin cifras exactas. Solo bandas.
+Esto no es cosmético. Un CSV con una fila por persona y cinco atributos es un **cuasi-identificador**: aunque no lleve nombres, cada fila describe a un individuo con precisión suficiente para despejarlo. El agregado no tiene esa propiedad — y el `n` de cada fila hace que el umbral sea auditable de un vistazo.
+
+Los aportes individuales viven en los issues, no en el repo.
 
 ## Verifícalo tú
 
