@@ -122,6 +122,12 @@ echo "  [6] Fuentes oficiales del Tránsito"
 # UA de navegador a proposito: varios colegios profesionales estan detras de
 # Cloudflare y responden 403 a un curl pelado. Un 403 por bot-protection no es
 # un link muerto — sin esto, el verificador reporta falsos positivos.
+# El UA no alcanza en CI: Cloudflare bloquea por reputacion de IP, y las de
+# GitHub Actions son de datacenter. Medido 2026-08-17: egbc.ca y peo.on.ca dan
+# 403 en Actions y 200 desde una IP residencial. Por eso 403/429 son
+# INCONCLUYENTES, no fallas: un 403 de bot-protection no dice nada sobre si el
+# recurso existe, que es lo unico que este chequeo pregunta. Un gate rojo por
+# el viento se desconecta justo antes del incendio.
 UA="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36"
 if command -v curl >/dev/null 2>&1; then
     while IFS= read -r url; do
@@ -129,9 +135,10 @@ if command -v curl >/dev/null 2>&1; then
         code=$(curl -s -o /dev/null -w "%{http_code}" -m 15 -L -A "$UA" "$url" 2>/dev/null)
         code="${code:-000}"
         case "$code" in
-            2*|3*) ok "$url ($code)" ;;
-            000)   echo "  ~ $url (sin red, no concluyente)" ;;
-            *)     falla "$url responde $code" ;;
+            2*|3*)     ok "$url ($code)" ;;
+            000)       echo "  ~ $url (sin red, no concluyente)" ;;
+            403|429)   echo "  ~ $url ($code: bot-protection, no concluyente)" ;;
+            *)         falla "$url responde $code" ;;
         esac
     done < <(grep -oh 'https://[A-Za-z0-9./-]*' transito/README.md | sed 's/[.,)]*$//' | sort -u)
 else
