@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: "📖 Léelo primero — no necesitas cuenta ni permiso"
+    url: https://github.com/josecortesmadrid/ici-utfsm#empieza-acá
+    about: "El Tránsito, El Atlas y El Índice son públicos. Primero recibes, después decides si aportas."
+  - name: "🔒 Cómo se protegen tus datos"
+    url: https://github.com/josecortesmadrid/ici-utfsm/blob/main/PRIVACIDAD.md
+    about: "Regla dura: nada se publica con menos de 5 personas en la celda. Bandas, nunca cifras."
+  - name: "🗑️ Retirar mis datos"
+    url: https://github.com/josecortesmadrid/ici-utfsm/issues?q=label%3Aentrada
+    about: "Busca tu issue de entrada, coméntalo con 'retirar' y ciérralo. Sale del agregado en la siguiente actualización."

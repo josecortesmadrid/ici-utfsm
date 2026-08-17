@@ -1,0 +1,33 @@
+name: verificar
+
+# El repo se prueba a si mismo en cada cambio.
+# Un README solo lleva carga si algo lo ejecuta.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  privacidad:
+    name: "k-anonimato (bloquea el merge)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validar k>=5 en el Atlas
+        run: python scripts/validar_k_anonimato.py atlas/datos.csv
+
+  afirmaciones:
+    name: "el repo no miente"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Ejecutar toda afirmacion de los READMEs
+        run: bash verificar.sh

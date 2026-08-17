@@ -1,27 +1,52 @@
 # ici-utfsm — Instrucciones de trabajo
 
-Colaboración entre ex alumnos de Ing. Civil Industrial UTFSM y amigos.
-Mapa holónico: `../HOLONES.md` (L1.3).
+Red de ex alumnos de Ing. Civil Industrial UTFSM. Un oráculo, no una comunidad.
+
+Estructura y razonamiento de diseño: [`HOLONES.md`](HOLONES.md)
+Reglas y derechos de decisión: [`GOBERNANZA.md`](GOBERNANZA.md)
+La regla que manda sobre todas: [`PRIVACIDAD.md`](PRIVACIDAD.md)
 
 ## ⚠️ Este repo es PÚBLICO
 
-El único público de los cuatro. Todo lo que se commitea acá es visible para cualquiera.
+Todo lo que se commitea acá lo lee cualquiera: recruiters, tu jefe, tu futuro jefe.
 
-- **Nada de `familia/` cruza a este repo.** Ese repo tiene empleador, cargo y trayectoria de cinco personas reales.
-- Nada del Workbench, ni `corpus_jose/`, ni tráfico del buzón.
-- Nombres de terceros solo con su permiso explícito.
+- **Nunca**: nombres completos, empleadores asociados a personas, contactos, cifras exactas de renta
+- **Nunca**: datos internos de un empleador — sus tarifas, clientes, márgenes o procesos
+- **Nunca**: contenido de repos privados del mantenedor, sea cual sea
+- Nombres de terceros solo con permiso explícito
 
-## Cómo se trabaja acá: todo en holones
+## Todo en holones
 
-Seis preguntas por cambio de sustancia: **S1** qué ejecuta · **S2** a quién afecta y por qué canal · **S3** el comando que decide si cerró · **S3\*** cómo otro lo refuta ejecutando · **S4** qué se aprendió · **S5** qué se pierde si se borra.
+Seis preguntas antes de empezar: **S1** qué ejecuta · **S2** a quién afecta y por qué canal · **S3** el comando que decide si cerró · **S3\*** cómo otro lo refuta ejecutando · **S4** qué se aprendió · **S5** qué se pierde si se borra.
 
-El kill criterion se declara antes de empezar.
+Una en UNKNOWN es respuesta válida. Rellenarla por inferencia no.
 
-## Estado (2026-08-16)
+**Los READMEs cargan el peso.** El README de cada carpeta *es* su holón — no hay documentación aparte que se desincronice.
 
-Vacío — solo `Initial commit` del 2026-08-17T02:36Z.
+## Las tres reglas duras
 
-Tiene **S5 declarado pero S1 ausente**: el propósito está escrito en la descripción, pero no hay ninguna operación. Siendo público, hoy un ex alumno que llegue encuentra un repo desierto.
+1. **El criterio de muerte se declara antes.** Declararlo después es elegir el que ya sabes que vas a pasar.
+2. **El que audita ejecuta, no lee.** Un número sin comando que lo reproduzca no entra.
+3. **El umbral k≥5 no se baja nunca.** Ni por esta vez, ni porque la celda es interesante. Una regla de privacidad con excepciones no es una regla.
 
-**Primer holón pendiente**: un README que le diga a quien llega qué es esto y qué hacer.
-S3 de ese holón: que alguien ajeno lo lea y sepa cuál es su primer paso sin preguntarte.
+## Antes de afirmar algo en un README
+
+```bash
+./verificar.sh
+```
+
+Ejecuta toda afirmación del repo: que los tres activos declaren su holón, que las rutas citadas existan, que el formulario capture los campos que promete, que el Atlas no diga tener datos que no tiene, y que las fuentes oficiales del Tránsito sigan vivas.
+
+Existe porque un README solo lleva carga si algo lo prueba.
+
+**Gotcha del verificador**: varios colegios profesionales están detrás de Cloudflare y devuelven 403 a un curl sin User-Agent de navegador. Un 403 por bot-protection no es un link muerto — no quites el `-A` o el script reporta falsos positivos.
+
+## Estado
+
+| Activo | Estado | Depende de |
+|---|---|---|
+| `transito/` | utilizable | nada — funciona a n=0 |
+| `atlas/` | vacío | ~40-60 filas antes de la primera celda con k≥5 |
+| `indice/` | vacío | gente que se ofrezca |
+
+El README raíz publica este estado. **Si cambia acá, cambia allá** — prometer un Atlas lleno que no existe quema lo único que hace que alguien entregue su renta.

@@ -1,0 +1,169 @@
+name: "🚪 Entrada — deja tu fila"
+description: "3 minutos. Es lo que hace que el Atlas exista. Nada acá te identifica."
+title: "[entrada] promoción · país"
+labels: ["entrada", "dato"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### Antes de partir
+
+        **No pongas tu nombre, tu empleador ni tu correo en ningún campo.** Si los pones, se editan antes de procesar.
+
+        Todo esto se agrega en bandas y **nada se publica si en esa celda hay menos de 5 personas** — ver [PRIVACIDAD.md](../blob/main/PRIVACIDAD.md).
+
+        Puedes saltarte cualquier campo. Mientras más completes, mejor queda el Atlas para el que venga después.
+
+  - type: dropdown
+    id: promocion
+    attributes:
+      label: Promoción (año de egreso, en tramo)
+      options:
+        - "antes de 1995"
+        - "1995–1999"
+        - "2000–2004"
+        - "2005–2009"
+        - "2010–2014"
+        - "2015–2019"
+        - "2020–2024"
+        - "2025 o después"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: pais
+    attributes:
+      label: ¿Dónde trabajas hoy?
+      options:
+        - "Chile"
+        - "Canadá"
+        - "Estados Unidos"
+        - "Australia / Nueva Zelanda"
+        - "Perú / Brasil / Colombia / México"
+        - "España / resto de Europa"
+        - "Otro"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: industria
+    attributes:
+      label: Industria
+      options:
+        - "Minería / recursos naturales"
+        - "Energía / utilities"
+        - "Consultoría / servicios profesionales"
+        - "Banca / finanzas / seguros"
+        - "Tecnología / software"
+        - "Retail / consumo masivo"
+        - "Logística / transporte / aviación"
+        - "Manufactura / industrial"
+        - "Salud / farma"
+        - "Sector público / academia"
+        - "Emprendimiento propio"
+        - "Otra"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: nivel
+    attributes:
+      label: Nivel actual
+      options:
+        - "Analista / profesional"
+        - "Jefatura / especialista senior"
+        - "Subgerencia / superintendencia"
+        - "Gerencia"
+        - "Dirección / C-level"
+        - "Socio / dueño"
+        - "Entre trabajos"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: experiencia
+    attributes:
+      label: Años de experiencia
+      options: ["0–3", "4–7", "8–12", "13–20", "más de 20"]
+    validations:
+      required: true
+
+  - type: dropdown
+    id: renta
+    attributes:
+      label: "Renta anual bruta, todo incluido (opcional pero es EL dato)"
+      description: "En USD al año, bruto, sumando bono y acciones. Para convertir desde Chile: líquido mensual × 12 × 1.4 aprox. Bandas anchas a propósito."
+      options:
+        - "prefiero no decir"
+        - "menos de 30.000"
+        - "30.000–50.000"
+        - "50.000–80.000"
+        - "80.000–120.000"
+        - "120.000–180.000"
+        - "180.000–250.000"
+        - "más de 250.000"
+    validations:
+      required: false
+
+  - type: textarea
+    id: con_que
+    attributes:
+      label: "Con qué — tus herramientas"
+      description: "Títulos de posgrado, certificaciones, idiomas, software. Sin nombres de empleadores."
+      placeholder: "MBA · P.Eng Alberta · PMP · inglés C1 · SAP PM, Power BI, Python"
+    validations:
+      required: false
+
+  - type: textarea
+    id: que_espera
+    attributes:
+      label: "Qué esperas — ¿qué pregunta traías?"
+      description: "La razón por la que entraste hoy. Esto define qué se construye después: lo más preguntado se responde primero."
+      placeholder: "Me ofrecieron un puesto en Calgary y no sé si el sueldo compensa el costo de vida."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: llegada
+    attributes:
+      label: "¿Cómo llegaste acá?"
+      description: "Esto mide si la red se pasa sola. Si nadie reenvía, se cierra en vez de fingir que está viva."
+      options:
+        - "Me lo pasó un compañero de la U"
+        - "Me lo pasó alguien de otra promoción"
+        - "Grupo de WhatsApp"
+        - "LinkedIn u otra red"
+        - "Lo encontré buscando"
+        - "Prefiero no decir"
+    validations:
+      required: true
+
+  - type: input
+    id: quien_te_paso
+    attributes:
+      label: "¿Quién te lo pasó? (opcional, solo iniciales o promoción)"
+      description: "Sirve para saber qué nodos hacen circular esto. Iniciales bastan — no hace falta nombre completo."
+      placeholder: "J.C., promoción 2005"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: que_acepta
+    attributes:
+      label: "Qué aceptas — el pacto de datos"
+      description: "Sin el primero no se puede procesar tu fila. Los demás son tuyos."
+      options:
+        - label: "Acepto que mis datos se publiquen **solo en agregado**, en bandas y nunca en celdas con menos de 5 personas."
+          required: true
+        - label: "Acepto que me contacten por este issue si alguien tiene una pregunta sobre mi ruta."
+          required: false
+        - label: "Quiero aparecer en **El Índice** como alguien dispuesto a conversar con quien esté en mi misma transición."
+          required: false
+        - label: "Confirmo que no escribí nombres, empleadores ni datos de contacto en los campos de arriba."
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        **Puedes borrar tu fila cuando quieras**: cierra este issue con un comentario que diga `retirar`, y sale del agregado en la siguiente actualización.

@@ -1,0 +1,55 @@
+name: "❓ Consulta — pregúntale al oráculo"
+description: "Tienes una decisión encima y necesitas datos o alguien que ya pasó por ahí."
+title: "[consulta] "
+labels: ["consulta"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        No hay que ser miembro de nada para preguntar. Pregunta y listo.
+
+        Si la respuesta no está todavía, la pregunta igual sirve: **lo más preguntado es lo que se construye primero.**
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: ¿De qué se trata?
+      options:
+        - "Oferta de trabajo / negociación de renta"
+        - "Emigrar — visa, título, colegiatura"
+        - "Cambio de industria"
+        - "Volver a Chile"
+        - "Posgrado o certificación: ¿vale la pena?"
+        - "Emprender"
+        - "Otra"
+    validations:
+      required: true
+
+  - type: textarea
+    id: pregunta
+    attributes:
+      label: Tu pregunta
+      description: "Mientras más concreta, mejor la respuesta. Sin nombres de empresas ni personas."
+      placeholder: "Tengo oferta de superintendente en Columbia Británica, 165K CAD + bono 20%. Vengo de jefatura en minería en Chile. ¿Es buena para 12 años de experiencia?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto tuyo (opcional)
+      description: "Promoción, años de experiencia, dónde estás hoy. En tramos, sin identificarte."
+      placeholder: "Promoción 2010, 13 años, hoy en Antofagasta."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: urgencia
+    attributes:
+      label: ¿Para cuándo?
+      options:
+        - "Tengo que responder esta semana"
+        - "Este mes"
+        - "Estoy explorando, sin apuro"
+    validations:
+      required: true
